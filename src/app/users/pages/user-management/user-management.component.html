@@ -1,0 +1,67 @@
+<div class="bg-white p-4 sm:p-6 md:p-8 rounded shadow-md w-full max-w-4xl mx-auto">
+  <!-- Panel de edición de usuario -->
+  <div class="bg-white p-4 sm:p-6 rounded shadow-md mb-6">
+    <h3 class="text-xl font-semibold text-center mb-4">Editar Usuario</h3>
+
+    <!-- Formulario responsive -->
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()"
+          class="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0">
+
+      <!-- Nombre -->
+      <div class="flex-1">
+        <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+        <input id="name" type="text" formControlName="name" class="w-full p-2 border rounded" required>
+      </div>
+
+      <!-- Email -->
+      <div class="flex-1">
+        <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input id="email" type="email" formControlName="email" class="w-full p-2 border rounded" required>
+      </div>
+
+      <!-- Rol -->
+      <div class="flex-1">
+        <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
+        <select id="role" formControlName="role" class="w-full p-2 border rounded">
+          <option *ngFor="let role of roles" [value]="role.id_rol">{{ role.descripcion }}</option>
+        </select>
+      </div>
+
+      <!-- Botón actualizar -->
+      <div class="self-start md:self-end">
+        <button type="submit" [disabled]="userForm.invalid"
+                class="bg-blue-600 text-white py-2 px-6 rounded hover:bg-blue-700">
+          Actualizar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tabla usuarios con scroll en móvil -->
+  <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Asignar Roles</h2>
+  <div class="overflow-x-auto w-full">
+    <table class="min-w-[600px] table-auto w-full">
+      <thead>
+        <tr class="bg-blue-100">
+          <th class="p-2 text-left">Nombre</th>
+          <th class="p-2 text-left">Correo</th>
+          <th class="p-2 text-left">Rol</th>
+          <th class="p-2 text-left">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="border-t">
+          <td class="p-2">{{ user.nombres }}</td>
+          <td class="p-2">{{ user.email }}</td>
+          <td class="p-2">{{ user.rol }}</td>
+          <td class="p-2">
+            <button (click)="editUser(user)"
+                    class="bg-yellow-500 text-white py-1 px-4 rounded hover:bg-yellow-600">
+              Editar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

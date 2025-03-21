@@ -1,0 +1,59 @@
+<header class="fixed top-0 left-0 w-full bg-blue-600 text-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+    <!-- Logo -->
+    <a routerLink="/home" class="text-2xl font-bold tracking-wide">
+      ProductsPlatform
+    </a>
+
+    <!-- Hamburguesa - solo móvil -->
+    <button (click)="toggleMobileMenu()" class="md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Nav grande -->
+    <nav class="space-x-4 hidden md:flex">
+      <a *ngIf="isLoggedIn && isAdmin" routerLink="/home" routerLinkActive="font-semibold underline">Home</a>
+      <a *ngIf="isLoggedIn && isAdmin" routerLink="/users/user-management"
+        routerLinkActive="font-semibold underline">Gestionar Usuarios</a>
+      <a *ngIf="isLoggedIn && isAdmin" routerLink="/products/admin" routerLinkActive="font-semibold underline">Gestionar
+        Productos</a>
+      <a *ngIf="isLoggedIn" routerLink="/products/viewer" routerLinkActive="font-semibold underline">Consultar
+        Productos</a>
+    </nav>
+
+    <!-- Login/logout grande -->
+    <div class="space-x-4 hidden md:block">
+      <button *ngIf="!isLoggedIn" routerLink="/auth/login"
+        class="bg-white text-blue-600 px-4 py-1 rounded hover:bg-blue-100">
+        Iniciar Sesión
+      </button>
+      <button *ngIf="!isLoggedIn" routerLink="/auth/register"
+        class="bg-white text-blue-600 px-4 py-1 rounded hover:bg-blue-100">
+        Registrate
+      </button>
+      <button *ngIf="isLoggedIn" (click)="logout()" class="bg-red-500 px-4 py-1 rounded hover:bg-red-600">
+        Cerrar Sesión
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú móvil -->
+  <div *ngIf="mobileMenuOpen" class="md:hidden px-4 pb-4 flex flex-col space-y-2">
+    <a routerLink="/home" routerLinkActive="font-semibold underline" class="block w-full">Home</a>
+    <a *ngIf="isAdmin" routerLink="/users/user-management" routerLinkActive="font-semibold underline"
+      class="block w-full">Gestionar Usuarios</a>
+    <a routerLink="/service" routerLinkActive="font-semibold underline" class="block w-full">Servicios</a>
+    <a routerLink="/user" routerLinkActive="font-semibold underline" class="block w-full">Usuarios</a>
+
+    <button *ngIf="!isLoggedIn" routerLink="/auth/login"
+      class="bg-white text-blue-600 px-4 py-1 rounded hover:bg-blue-100 w-full text-left">
+      Iniciar Sesión
+    </button>
+    <button *ngIf="isLoggedIn" (click)="logout()"
+      class="bg-red-500 px-4 py-1 rounded hover:bg-red-600 w-full text-left">
+      Cerrar Sesión
+    </button>
+  </div>
+</header>

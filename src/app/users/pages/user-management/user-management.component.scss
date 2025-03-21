@@ -1,0 +1,16 @@
+/* Contenedor del formulario con Flexbox */
+form {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre los elementos */
+}
+
+/* Cada campo de entrada ocupa un 30% del ancho disponible */
+form div {
+  flex: 1;
+}
+
+/* Aseguramos que el botón de actualización ocupe su espacio completo */
+form button {
+  flex: none;
+}

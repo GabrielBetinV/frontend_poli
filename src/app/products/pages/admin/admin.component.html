@@ -1,0 +1,96 @@
+<div class="bg-white p-4 sm:p-6 md:p-8 rounded shadow-md w-full max-w-4xl mx-auto">
+  <div class="bg-white p-4 sm:p-6 rounded shadow-md mb-6">
+    <h3 class="text-xl font-semibold text-center mb-4">{{ editMode ? 'Actualizar Producto' : 'Agregar Producto' }}</h3>
+
+    <form [formGroup]="newProductForm" (ngSubmit)="editMode ? updateProduct() : addProduct()"
+      class="grid grid-cols-1 md:grid-cols-2 gap-4" autocomplete="on">
+      <div>
+        <label for="provider_name" class="block text-sm font-medium text-gray-700">Proveedor</label>
+        <input id="provider_name" type="text" formControlName="provider_name" placeholder="Nombre del Proveedor"
+          class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required [readonly]="editMode"/>
+      </div>
+
+      <div>
+        <label for="product_name" class="block text-sm font-medium text-gray-700">Producto</label>
+        <input id="product_name" type="text" formControlName="product_name" placeholder="Nombre del Producto"
+          class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required [readonly]="editMode" />
+      </div>
+
+      <div>
+        <label for="quantity" class="block text-sm font-medium text-gray-700">Cantidad</label>
+        <input id="quantity" type="number" formControlName="quantity" placeholder="Cantidad"
+          class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+      </div>
+
+      <div>
+        <label for="price" class="block text-sm font-medium text-gray-700">Precio</label>
+        <input id="price" type="number" formControlName="price" placeholder="Precio"
+          class="w-full p-3 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+      </div>
+
+      <div *ngIf="!editMode">
+        <label for="image" class="block text-sm font-medium text-gray-700">Imagen</label>
+        <div
+          class="flex justify-center items-center w-full h-12 border-2 border-dashed border-gray-300 rounded-md cursor-pointer relative">
+          <input id="image" type="file" (change)="onFileSelect($event)"
+            class="opacity-0 absolute inset-0 w-full h-full z-10 cursor-pointer" />
+          <div class="text-center text-gray-500 z-0">
+            <p *ngIf="!selectedImage">Arrastra o selecciona una imagen</p>
+            <p *ngIf="selectedImage" class="text-sm text-gray-700">{{ selectedImageName }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-full text-center mt-4">
+        <button type="submit" [disabled]="newProductForm.invalid"
+          class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+          {{ editMode ? 'Actualizar Producto' : 'Agregar Producto' }}
+        </button>
+        <!-- Botón Limpiar -->
+        <button type="button" (click)="resetForm()"
+          class="bg-gray-400 text-white py-3 px-6 rounded-lg hover:bg-gray-500 transition-colors duration-300 ml-2">
+          Limpiar
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Productos</h2>
+  <div class="overflow-x-auto w-full">
+    <table class="min-w-[600px] table-auto w-full">
+      <thead>
+        <tr class="bg-blue-100">
+          <th class="p-3 text-left">Producto</th>
+          <th class="p-3 text-left">Imagen</th>
+          <th class="p-3 text-left">Cantidad</th>
+          <th class="p-3 text-left">Precio</th>
+          <th class="p-3 text-left">Editar</th>
+          <th class="p-3 text-left">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products" class="border-t">
+          <td class="p-3">{{ product.product_name }}</td>
+          <td class="p-3">
+            <img *ngIf="product.image" [src]="'data:image/jpeg;base64,' + product.image" alt="Imagen del Producto"
+              class="max-w-[80px] max-h-[80px] object-cover rounded-md" />
+          </td>
+          <td class="p-3">{{ product.quantity }}</td>
+          <td class="p-3">{{ product.price | currency }}</td>
+          <td class="p-3">
+            <button (click)="editProduct(product)"
+              class="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition-colors duration-300">
+              Editar
+            </button>
+          </td>
+          <td class="p-3">
+            <button (click)="deleteProduct(product.id)"
+              class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 mt-2 transition-colors duration-300">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

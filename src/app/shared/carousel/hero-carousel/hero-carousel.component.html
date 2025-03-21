@@ -1,0 +1,19 @@
+  <!-- Carrusel con Tailwind CSS -->
+  <div class="relative">
+    <div class="carousel-container w-full overflow-hidden relative">
+      <!-- Imágenes del carrusel -->
+      <div class="carousel-images flex transition-transform duration-500 ease-in-out" [style.transform]="transformStyle">
+        <img src="imagen_3.png" class="w-full object-cover" alt="Gestión de Productos">
+        <img src="imagen_4.png" class="w-full object-cover" alt="Inventario de Productos">
+        <img src="imagen_6.png" class="w-full object-cover" alt="Administración Eficiente">
+      </div>
+    </div>
+
+    <!-- Controles del carrusel -->
+    <button (click)="prevSlide()" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2">
+      &#10094;
+    </button>
+    <button (click)="nextSlide()" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-4 py-2">
+      &#10095;
+    </button>
+  </div>

@@ -1,0 +1,57 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Iniciar Sesión</h2>
+
+    <form (ngSubmit)="login()" [formGroup]="loginForm" class="space-y-4" autocomplete="on">
+      <input
+        formControlName="email"
+        name="email"
+        type="email"
+        placeholder="Correo electrónico"
+        autocomplete="email"
+        class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300">
+
+      <!-- Contenedor del input + ojito -->
+      <div class="relative">
+        <input
+          formControlName="password"
+          name="password"
+          [type]="hidePassword ? 'password' : 'text'"
+          placeholder="Contraseña"
+          autocomplete="current-password"
+          class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300 pr-10">
+
+        <!-- Ojito -->
+        <button type="button" (click)="togglePassword()" class="absolute right-2 top-2 text-gray-500 hover:text-gray-700">
+          <svg *ngIf="hidePassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.478 0-8.268-2.943-9.542-7z" />
+          </svg>
+          <svg *ngIf="!hidePassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.05 10.05 0 012.033-3.368m1.885-1.885A9.958 9.958 0 0112 5c4.478 0 8.268 2.943 9.542 7a9.956 9.956 0 01-4.132 5.225M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 3l18 18" />
+          </svg>
+        </button>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid"
+              class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+        Ingresar
+      </button>
+
+      <p *ngIf="loginError" class="text-red-500 text-sm text-center">{{ loginError }}</p>
+    </form>
+
+
+    <p class="text-center text-sm mt-4">
+      ¿No tienes una cuenta?
+      <a href="/auth/register" class="text-blue-600 hover:underline">Regístrate aquí</a>
+    </p>
+  </div>
+</div>

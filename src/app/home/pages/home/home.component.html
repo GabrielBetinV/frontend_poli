@@ -1,0 +1,184 @@
+<!-- Hero Section -->
+
+<!-- <section class="text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white p-10 rounded-lg shadow-lg">
+  <h2 class="text-4xl font-extrabold mb-4">Plataforma Integral de Gestión de Productos</h2>
+  <p class="text-lg mb-6">
+    Registra, visualiza y administra información de forma eficiente y segura.
+  </p>
+</section>
+ -->
+
+<!-- Hero Section -->
+<section class="text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white p-10 rounded-lg shadow-lg">
+  <h2 class="text-4xl font-extrabold mb-4">Plataforma Integral de Gestión de Productos</h2>
+  <p class="text-lg mb-6">
+    Registra, visualiza y administra información de forma eficiente y segura.
+  </p>
+
+  <app-hero-carousel></app-hero-carousel>
+
+</section>
+
+
+
+
+
+
+<!-- Servicios -->
+<section id="servicios" class="p-10 grid md:grid-cols-2 gap-6">
+  <div *ngFor="let service of services"
+    class="shadow-md hover:shadow-lg transition duration-300 p-6 flex items-start space-x-4 bg-white rounded">
+    <div [ngClass]="service.iconClass"></div>
+    <div>
+      <h3 class="text-xl font-bold mb-2">{{ service.title }}</h3>
+      <p>{{ service.description }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Llamado a registrarse como Visualizador -->
+<section
+  class="bg-gradient-to-r from-green-400 to-blue-500 text-white p-10 rounded-lg shadow-lg text-center my-10 animate-fade-in-up">
+  <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Únete como Visualizador</h2>
+  <p class="text-lg md:text-xl mb-6">
+    Accede a información actualizada de productos, consulta inventarios y obtén datos clave al instante.
+  </p>
+
+  <!-- Beneficios -->
+  <div class="grid md:grid-cols-3 gap-6 mb-6">
+    <div class="bg-white text-blue-600 p-4 rounded-lg shadow-md">
+      <h3 class="text-xl font-bold mb-2">Consulta en Tiempo Real</h3>
+      <p>Visualiza productos disponibles de forma rápida y actualizada.</p>
+    </div>
+    <div class="bg-white text-blue-600 p-4 rounded-lg shadow-md">
+      <h3 class="text-xl font-bold mb-2">Acceso Seguro</h3>
+      <p>Tu información está protegida y accesible 24/7.</p>
+    </div>
+    <div class="bg-white text-blue-600 p-4 rounded-lg shadow-md">
+      <h3 class="text-xl font-bold mb-2">Interfaz Intuitiva</h3>
+      <p>Fácil navegación para una experiencia fluida y eficiente.</p>
+    </div>
+  </div>
+
+  <!-- Botón que llama al método -->
+  <button (click)="scrollToContact()"
+    class="bg-white text-green-600 font-semibold px-6 py-3 rounded hover:bg-green-100 transition duration-300">
+    ¡Contáctanos Ahora!
+  </button>
+
+</section>
+
+
+<!-- Testimonios -->
+<section id="testimonios" class="bg-white p-10 text-center border-t border-gray-200">
+  <h2 class="text-3xl font-bold text-gray-800 mb-8">Reseñas de Nuestros Usuarios</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <div *ngFor="let testimonial of testimonials"
+      class="shadow-md hover:shadow-lg transition duration-300 p-6 bg-white rounded">
+      <div class="flex items-center justify-center mb-4">
+        <ng-container *ngFor="let star of [].constructor(testimonial.rating)">
+          <i class="text-yellow-400 fas fa-star"></i>
+        </ng-container>
+      </div>
+      <p class="italic mb-4">"{{ testimonial.review }}"</p>
+      <h4 class="font-bold text-gray-700">- {{ testimonial.name }}</h4>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<!-- <section id="contacto" class="bg-gray-200 p-10 text-center border-t border-gray-300">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">Contáctanos</h2>
+  <p class="mb-4 text-gray-700">
+    ¿Tienes preguntas o comentarios? ¡Nos encantaría saber de ti!
+  </p>
+  <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded">
+    Enviar Consulta
+  </button>
+</section> -->
+
+<!-- Contacto -->
+<section id="contacto" class="bg-gray-200 p-10 text-center border-t border-gray-300">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">Contáctanos</h2>
+  <p class="mb-4 text-gray-700">
+    ¿Tienes preguntas o comentarios? ¡Nos encantaría saber de ti!
+  </p>
+
+  <!-- Información de Contacto -->
+  <div class="grid md:grid-cols-3 gap-6 text-left text-gray-700 mb-8">
+    <div>
+      <h3 class="text-xl font-semibold mb-2">Dirección</h3>
+      <p>Calle Ficticia 123, Ciudad Ejemplo</p>
+    </div>
+    <div>
+      <h3 class="text-xl font-semibold mb-2">Teléfono</h3>
+      <p>+1 (123) 456-7890</p>
+    </div>
+    <div>
+      <h3 class="text-xl font-semibold mb-2">Redes Sociales</h3>
+      <div class="flex space-x-4">
+        <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook fa-lg"></i></a>
+        <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter fa-lg"></i></a>
+        <a href="#" class="text-pink-600 hover:text-pink-800"><i class="fab fa-instagram fa-lg"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formulario de Contacto -->
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmitContactForm()"
+    class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md text-left space-y-4">
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Nombre</label>
+      <input type="text" formControlName="name"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Tu nombre" />
+      <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.invalid"
+        class="text-red-500 text-sm mt-1">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Email</label>
+      <input type="email" formControlName="email"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="tucorreo@ejemplo.com" />
+      <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.invalid"
+        class="text-red-500 text-sm mt-1">
+        <span *ngIf="contactForm.get('email')?.errors?.['required']">El correo es obligatorio.</span>
+        <span *ngIf="contactForm.get('email')?.errors?.['email']">Formato de correo inválido.</span>
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Teléfono</label>
+      <input type="tel" formControlName="phone"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Ej: 5551234567" />
+      <div *ngIf="contactForm.get('phone')?.touched && contactForm.get('phone')?.invalid"
+        class="text-red-500 text-sm mt-1">
+        <span *ngIf="contactForm.get('phone')?.errors?.['required']">El teléfono es obligatorio.</span>
+        <span *ngIf="contactForm.get('phone')?.errors?.['pattern']">Formato inválido. Solo números (7 a 15
+          dígitos).</span>
+      </div>
+    </div>
+
+
+    <div>
+      <label class="block text-gray-700 font-semibold mb-1">Mensaje</label>
+      <textarea rows="4" formControlName="message"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="¿Cómo podemos ayudarte?"></textarea>
+      <div *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.invalid"
+        class="text-red-500 text-sm mt-1">
+        El mensaje es obligatorio.
+      </div>
+    </div>
+
+    <button type="submit"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded transition duration-300">
+      Enviar Consulta
+    </button>
+  </form>
+
+</section>

@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Actualizar Inventario</h2>
+
+  <label for="product">Seleccionar Producto</label>
+  <select [(ngModel)]="selectedProductId" id="product" class="form-control">
+    <option *ngFor="let product of products" [value]="product.id">{{ product.product_name }}</option>
+  </select>
+
+  <label for="quantity">Nueva Cantidad</label>
+  <input type="number" [(ngModel)]="newQuantity" id="quantity" class="form-control" min="0" />
+
+  <button (click)="updateInventory()" class="btn btn-primary mt-3">Actualizar Inventario</button>
+</div>

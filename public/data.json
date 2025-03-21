@@ -1,0 +1,9 @@
+{
+  "ç":  [
+    { "id": 1, "name": "Admin", "email": "admin@mail.com", "password": "1234", "role": "admin" }
+  ],
+  "services": [
+    { "id": 1, "title": "Servicio 1", "description": "Descripción del servicio 1" }
+  ],
+  "contactMessages": []
+}
