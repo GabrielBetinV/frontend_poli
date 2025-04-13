@@ -3,7 +3,7 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/3a840be7-d140-4201-af2d-5c0b21b5068c/resourceGroups/user-service-platform_group/providers/Microsoft.Web/sites/user-service-platform",
+    "appService.defaultWebAppToDeploy": "",
     "appService.deploySubpath": "dist/user-service-platform/browser",
     "appService.showBuildDuringDeployPrompt": false
 }
